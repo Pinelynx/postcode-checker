@@ -13,6 +13,7 @@ AllCops:
     - 'tmp/**/*'
     - '.git/**/*'
     - 'bin/*'
+    - 'db/schema.rb'
   TargetRubyVersion: 3.0
 
 Naming/PredicateName:

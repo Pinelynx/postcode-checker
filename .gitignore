@@ -35,3 +35,6 @@
 # Ignore IntelliJ project files
 /.idea/*
 *.iml
+
+# Ignore development .env files
+*.env

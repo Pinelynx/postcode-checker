@@ -5,8 +5,8 @@ ruby '3.0.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.4'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3', '~> 1.4'
+# Use PostgreSQL as the database for Active Record
+gem 'pg', '~> 1.2.3'
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 # Use SCSS for stylesheets
@@ -27,6 +27,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'dotenv-rails', '~> 2.7.6'
   gem 'rails-controller-testing', '~> 1.0.5'
   gem 'rspec-rails', '~> 5.0.1'
   gem 'rubocop', '~> 1.18.4'
@@ -48,6 +49,8 @@ group :development do
 end
 
 group :test do
+  gem 'factory_bot', '~> 6.2.0'
+  gem 'ffaker', '~> 2.18.0'
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 3.26'
   gem 'selenium-webdriver'
