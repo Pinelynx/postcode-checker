@@ -1,3 +1,5 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  root to: 'check_postcode#index'
+  get 'check_postcode', to: 'check_postcode#index'
+  post 'check_postcode', to: 'check_postcode#check'
 end
