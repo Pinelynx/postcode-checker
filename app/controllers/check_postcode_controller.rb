@@ -4,11 +4,12 @@ class CheckPostcodeController < ApplicationController
   def index; end
 
   def check
-    @error = CheckPostcodeService.instance.call(postcode_param)
+    result = CheckPostcodeService.instance.call(postcode_param)
 
-    if @error.nil?
+    if result[:supported]
       render partial: 'check_postcode/success'
     else
+      @error = result[:message]
       render partial: 'check_postcode/error'
     end
   end
@@ -20,7 +21,7 @@ class CheckPostcodeController < ApplicationController
   end
 
   def missing_parameter
-    @error = 'Postcode is mandatory!'
+    @error = I18n.t('postcodes.errors.mandatory_postcode')
     render status: :unprocessable_entity, partial: 'check_postcode/error'
   end
 end

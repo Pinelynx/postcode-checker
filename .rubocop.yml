@@ -118,3 +118,9 @@ RSpec/MultipleMemoizedHelpers:
 
 RSpec/StubbedMock:
   Enabled: false
+
+RSpec/MultipleExpectations:
+  Max: 5
+
+RSpec/SubjectStub:
+  Enabled: false

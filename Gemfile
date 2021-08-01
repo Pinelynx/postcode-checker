@@ -51,6 +51,7 @@ end
 group :test do
   gem 'factory_bot', '~> 6.2.0'
   gem 'ffaker', '~> 2.18.0'
+  gem 'webmock', '~> 3.13.0'
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 3.26'
   gem 'selenium-webdriver'

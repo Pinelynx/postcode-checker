@@ -9,13 +9,9 @@ describe CheckPostcodeController, type: :controller do
     context 'when opening form' do
       subject(:request) { get :index }
 
-      it 'returns status 200' do
+      it 'returns status 200 and renders index template' do
         request
         expect(response.status).to eq 200
-      end
-
-      it 'renders index template' do
-        request
         expect(response).to render_template('index')
       end
     end
@@ -27,29 +23,21 @@ describe CheckPostcodeController, type: :controller do
     let(:params) { { postcode: 'postcode' } }
 
     context 'when postcode is supported' do
-      before { allow(check_postcode_service).to receive(:call).and_return(nil) }
+      before { allow(check_postcode_service).to receive(:call).and_return(supported: true) }
 
-      it 'returns status 200' do
+      it 'returns status 200 and renders success partial' do
         request
         expect(response.status).to eq 200
-      end
-
-      it 'renders success partial' do
-        request
         expect(response).to render_template('check_postcode/_success')
       end
     end
 
     context 'when postcode is not supported' do
-      before { allow(check_postcode_service).to receive(:call).and_return('error') }
+      before { allow(check_postcode_service).to receive(:call).and_return(supported: false, message: 'error') }
 
-      it 'returns status 200' do
+      it 'returns status 200 and renders error partial' do
         request
         expect(response.status).to eq 200
-      end
-
-      it 'renders error partial' do
-        request
         expect(response).to render_template('check_postcode/_error')
       end
     end
@@ -59,13 +47,9 @@ describe CheckPostcodeController, type: :controller do
 
       before { allow(check_postcode_service).to receive(:call).and_raise('This should not be raised') }
 
-      it 'returns status 422' do
+      it 'returns status 422 and renders error partial' do
         request
         expect(response.status).to eq 422
-      end
-
-      it 'renders error partial' do
-        request
         expect(response.status).to render_template('check_postcode/_error')
       end
     end
