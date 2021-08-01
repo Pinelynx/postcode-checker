@@ -24,4 +24,22 @@ RSpec.describe SupportedPostcode, type: :model do
       expect(supported_postcode.valid?).to be(false)
     end
   end
+
+  describe '#postcode=' do
+    context 'when postcode has extra whitespace' do
+      let(:supported_postcode) { build(:supported_postcode, postcode: '   EH8      8DX    ') }
+
+      it 'removes leading and trailing whitespaces as well as squishes multiple ones' do
+        expect(supported_postcode.postcode).to eq 'EH8 8DX'
+      end
+    end
+
+    context 'when postcode is nil' do
+      let(:supported_postcode) { build(:supported_postcode, postcode: nil) }
+
+      it 'keeps nil value' do
+        expect(supported_postcode.postcode).to eq nil
+      end
+    end
+  end
 end
