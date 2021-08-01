@@ -63,7 +63,7 @@ RSpec.describe CheckPostcodeService, type: :class do
         end
 
         context 'when postcode is not in the supported list but its lsoa is in the supported list' do
-          let(:postcode) { 'EH8 8DX' }
+          let(:postcode) { 'EH8 8ZZ' }
           let(:returned_lsoa) { 'Abbeyhill - 01' }
 
           it 'returns supported: true' do
@@ -105,7 +105,7 @@ RSpec.describe CheckPostcodeService, type: :class do
 
         before { stub_request(:get, "#{postcode_service_url}/#{postcode.delete(' ')}").to_return(status: 503) }
 
-        it 'returns supported: false and returns not supported message' do
+        it 'returns supported: nil and returns cannot fully check postcode message' do
           expect(service.call(postcode)).to eq result
         end
       end

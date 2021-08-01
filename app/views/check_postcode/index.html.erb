@@ -1,6 +1,6 @@
 <%= form_tag check_postcode_path, method: :post do %>
-  <%= label :postcode, 'Enter postcode you\'d like to check:' %>
-  <%= text_field :postcode, nil, required: true %>
+  <%= label :postcode, t('postcodes.view.form.prompt') %>
+  <%= text_field_tag :postcode, nil, required: true %>
   <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-  <%= button_tag 'Check your postcode!', type: :submit %>
+  <%= button_tag t('postcodes.view.form.button'), type: :submit %>
 <% end %>

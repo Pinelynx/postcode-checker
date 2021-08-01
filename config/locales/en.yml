@@ -9,3 +9,6 @@ en:
       postcode_not_supported: 'Your postcode is not supported'
     view:
       back_to_form_link: 'Back to form'
+      form:
+        prompt: 'Enter postcode you''d like to check'
+        button: 'Check your postcode!'
