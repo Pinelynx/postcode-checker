@@ -4,6 +4,7 @@ RSpec.describe 'Checking a postcode', type: :feature do
   let(:postcode_service_url) { 'http://example.com' }
 
   before do
+    ENV['POSTCODE_SERVICE_URL'] = postcode_service_url
     supported_lsoa = create(:supported_lsoa, starts_with: 'Abbeyhill')
     create(:supported_postcode, supported_lsoa: supported_lsoa, postcode: 'EH8 8DX')
   end
